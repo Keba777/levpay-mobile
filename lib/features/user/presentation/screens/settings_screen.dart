@@ -218,7 +218,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     _buildSettingItem(
                       icon: LucideIcons.creditCard,
                       title: "Payment Methods",
-                      onTap: () {},
+                      onTap: () => const CardsRoute().push(context),
                     ),
                     _buildSettingItem(
                       icon: LucideIcons.layoutDashboard,

@@ -17,6 +17,9 @@ import 'features/wallet/presentation/bloc/send_money_bloc.dart';
 import 'features/kyc/data/repositories/kyc_repository.dart';
 import 'features/kyc/presentation/bloc/kyc_bloc.dart';
 import 'features/user/presentation/bloc/profile_bloc.dart';
+import 'features/user/data/repositories/payment_method_repository.dart';
+import 'features/user/presentation/bloc/payment_method_bloc.dart';
+import 'features/user/presentation/bloc/payment_method_event.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +33,7 @@ void main() async {
   final walletRepository = WalletRepository(dioClient);
   final userRepository = UserRepository(dioClient);
   final kycRepository = KYCRepository(dioClient);
+  final paymentMethodRepository = PaymentMethodRepository(dioClient: dioClient);
 
   runApp(
     ProviderScope(
@@ -39,6 +43,7 @@ void main() async {
           RepositoryProvider.value(value: walletRepository),
           RepositoryProvider.value(value: userRepository),
           RepositoryProvider.value(value: kycRepository),
+          RepositoryProvider.value(value: paymentMethodRepository),
         ],
         child: MultiBlocProvider(
           providers: [
@@ -59,6 +64,11 @@ void main() async {
             ),
             BlocProvider(
               create: (context) => ProfileBloc(userRepository: userRepository),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  PaymentMethodBloc(repository: paymentMethodRepository)
+                    ..add(PaymentMethodListRequested()),
             ),
           ],
           child: const MyApp(),
