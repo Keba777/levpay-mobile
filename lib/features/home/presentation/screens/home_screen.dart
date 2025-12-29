@@ -75,14 +75,27 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 2,
                           ),
                         ),
-                        child: IconButton(
-                          icon: const Icon(
-                            LucideIcons.settings,
-                            color: Color(0xFF3D8D7A),
-                          ),
-                          onPressed: () {
-                            const SettingsRoute().push(context);
-                          },
+                        child: Row(
+                          children: [
+                            IconButton(
+                              icon: const Icon(
+                                LucideIcons.bell,
+                                color: Color(0xFF3D8D7A),
+                              ),
+                              onPressed: () {
+                                const NotificationCenterRoute().push(context);
+                              },
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                LucideIcons.settings,
+                                color: Color(0xFF3D8D7A),
+                              ),
+                              onPressed: () {
+                                const SettingsRoute().push(context);
+                              },
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -205,15 +218,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       _buildActionItem(
-                        Icons.arrow_upward,
+                        LucideIcons.arrowUp,
                         "Send",
                         onTap: () {
                           const SendMoneyRoute().push(context);
                         },
                       ),
-                      _buildActionItem(Icons.arrow_downward, "Receive"),
-                      _buildActionItem(Icons.add, "Top Up"),
-                      _buildActionItem(Icons.history, "History"),
+                      _buildActionItem(
+                        LucideIcons.receipt,
+                        "Billing",
+                        onTap: () {
+                          const BillingRoute().push(context);
+                        },
+                      ),
+                      _buildActionItem(
+                        LucideIcons.bell,
+                        "Inbox",
+                        onTap: () {
+                          const NotificationCenterRoute().push(context);
+                        },
+                      ),
+                      _buildActionItem(LucideIcons.history, "History"),
                     ],
                   ),
                 ),

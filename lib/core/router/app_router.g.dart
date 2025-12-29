@@ -16,6 +16,8 @@ List<RouteBase> get $appRoutes => [
       $kYCRoute,
       $settingsRoute,
       $cardsRoute,
+      $billingRoute,
+      $notificationCenterRoute,
     ];
 
 RouteBase get $loginRoute => GoRouteData.$route(
@@ -224,11 +226,56 @@ extension $CardsRouteExtension on CardsRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $billingRoute => GoRouteData.$route(
+      path: '/billing',
+      factory: $BillingRouteExtension._fromState,
+    );
+
+extension $BillingRouteExtension on BillingRoute {
+  static BillingRoute _fromState(GoRouterState state) => const BillingRoute();
+
+  String get location => GoRouteData.$location(
+        '/billing',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $notificationCenterRoute => GoRouteData.$route(
+      path: '/notifications',
+      factory: $NotificationCenterRouteExtension._fromState,
+    );
+
+extension $NotificationCenterRouteExtension on NotificationCenterRoute {
+  static NotificationCenterRoute _fromState(GoRouterState state) =>
+      const NotificationCenterRoute();
+
+  String get location => GoRouteData.$location(
+        '/notifications',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$goRouterHash() => r'04725e6d4bd60f6bb07e5102a544e1f5921f9ab0';
+String _$goRouterHash() => r'8ad8878c89d2c1a923debdb0f830c7f35b36e5c7';
 
 /// See also [goRouter].
 @ProviderFor(goRouter)

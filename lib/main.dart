@@ -20,6 +20,10 @@ import 'features/user/presentation/bloc/profile_bloc.dart';
 import 'features/user/data/repositories/payment_method_repository.dart';
 import 'features/user/presentation/bloc/payment_method_bloc.dart';
 import 'features/user/presentation/bloc/payment_method_event.dart';
+import 'features/billing/data/repositories/billing_repository.dart';
+import 'features/billing/presentation/bloc/billing_bloc.dart';
+import 'features/notification/data/repositories/notification_repository.dart';
+import 'features/notification/presentation/bloc/notification_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +38,8 @@ void main() async {
   final userRepository = UserRepository(dioClient);
   final kycRepository = KYCRepository(dioClient);
   final paymentMethodRepository = PaymentMethodRepository(dioClient: dioClient);
+  final billingRepository = BillingRepository(dioClient);
+  final notificationRepository = NotificationRepository(dioClient);
 
   runApp(
     ProviderScope(
@@ -44,6 +50,8 @@ void main() async {
           RepositoryProvider.value(value: userRepository),
           RepositoryProvider.value(value: kycRepository),
           RepositoryProvider.value(value: paymentMethodRepository),
+          RepositoryProvider.value(value: billingRepository),
+          RepositoryProvider.value(value: notificationRepository),
         ],
         child: MultiBlocProvider(
           providers: [
@@ -69,6 +77,14 @@ void main() async {
               create: (context) =>
                   PaymentMethodBloc(repository: paymentMethodRepository)
                     ..add(PaymentMethodListRequested()),
+            ),
+            BlocProvider(
+              create: (context) => BillingBloc(repository: billingRepository),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  NotificationBloc(repository: notificationRepository)
+                    ..add(NotificationListRequested()),
             ),
           ],
           child: const MyApp(),

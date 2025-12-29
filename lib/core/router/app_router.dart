@@ -15,6 +15,8 @@ import 'package:flutter_bloc/flutter_bloc.dart'; // For context.read
 import 'package:levpay_mobile/features/kyc/presentation/screens/kyc_screen.dart';
 import 'package:levpay_mobile/features/user/presentation/screens/settings_screen.dart';
 import 'package:levpay_mobile/features/user/presentation/screens/cards_screen.dart';
+import 'package:levpay_mobile/features/billing/presentation/screens/billing_screen.dart';
+import 'package:levpay_mobile/features/notification/presentation/screens/notification_center_screen.dart';
 
 part 'app_router.g.dart';
 
@@ -32,6 +34,8 @@ GoRouter goRouter(Ref ref) {
       $kYCRoute,
       $settingsRoute,
       $cardsRoute,
+      $billingRoute,
+      $notificationCenterRoute,
     ],
     redirect: (context, state) {
       final authState = context.read<AuthBloc>().state;
@@ -131,4 +135,22 @@ class CardsRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const CardsScreen();
+}
+
+@TypedGoRoute<BillingRoute>(path: '/billing')
+class BillingRoute extends GoRouteData {
+  const BillingRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const BillingScreen();
+}
+
+@TypedGoRoute<NotificationCenterRoute>(path: '/notifications')
+class NotificationCenterRoute extends GoRouteData {
+  const NotificationCenterRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const NotificationCenterScreen();
 }
