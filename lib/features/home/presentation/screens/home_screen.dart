@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:levpay_mobile/core/router/app_router.dart';
 import 'package:levpay_mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:levpay_mobile/features/auth/presentation/bloc/auth_event.dart';
 import 'package:levpay_mobile/features/auth/presentation/bloc/auth_state.dart';
@@ -117,7 +118,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _buildActionItem(Icons.arrow_upward, "Send"),
+                      _buildActionItem(
+                        Icons.arrow_upward,
+                        "Send",
+                        onTap: () {
+                          const SendMoneyRoute().push(context);
+                        },
+                      ),
                       _buildActionItem(Icons.arrow_downward, "Receive"),
                       _buildActionItem(Icons.add, "Top Up"),
                       _buildActionItem(Icons.history, "History"),
@@ -280,34 +287,37 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildActionItem(IconData icon, String label) {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              ),
-            ],
+  Widget _buildActionItem(IconData icon, String label, {VoidCallback? onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Icon(icon, color: const Color(0xFF3D8D7A)),
           ),
-          child: Icon(icon, color: const Color(0xFF3D8D7A)),
-        ),
-        const SizedBox(height: 12),
-        Text(
-          label,
-          style: GoogleFonts.outfit(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: const Color(0xFF3D8D7A),
+          const SizedBox(height: 12),
+          Text(
+            label,
+            style: GoogleFonts.outfit(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: const Color(0xFF3D8D7A),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

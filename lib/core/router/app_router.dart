@@ -8,6 +8,7 @@ import 'package:levpay_mobile/features/auth/register_screen.dart';
 import 'package:levpay_mobile/features/auth/forgot_password_screen.dart';
 import 'package:levpay_mobile/features/auth/reset_password_screen.dart';
 import 'package:levpay_mobile/features/home/presentation/screens/home_screen.dart';
+import 'package:levpay_mobile/features/wallet/presentation/screens/send_money_screen.dart';
 import 'package:levpay_mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:levpay_mobile/features/auth/presentation/bloc/auth_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'; // For context.read
@@ -24,6 +25,7 @@ GoRouter goRouter(Ref ref) {
       $forgotPasswordRoute,
       $resetPasswordRoute,
       $homeRoute,
+      $sendMoneyRoute,
     ],
     redirect: (context, state) {
       final authState = context.read<AuthBloc>().state;
@@ -88,4 +90,13 @@ class HomeRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const HomeScreen();
+}
+
+@TypedGoRoute<SendMoneyRoute>(path: '/send-money')
+class SendMoneyRoute extends GoRouteData {
+  const SendMoneyRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const SendMoneyScreen();
 }

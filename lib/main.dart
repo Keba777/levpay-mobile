@@ -10,6 +10,10 @@ import 'core/theme/app_theme.dart';
 import 'features/auth/data/repositories/auth_repository.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/auth/presentation/bloc/auth_event.dart';
+import 'features/wallet/data/repositories/wallet_repository.dart';
+import 'features/user/data/repositories/user_repository.dart';
+import 'features/wallet/presentation/bloc/wallet_bloc.dart';
+import 'features/wallet/presentation/bloc/send_money_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,15 +24,32 @@ void main() async {
   const storage = FlutterSecureStorage();
   final dioClient = DioClient(dio, storage);
   final authRepository = AuthRepository(dioClient);
+  final walletRepository = WalletRepository(dioClient);
+  final userRepository = UserRepository(dioClient);
 
   runApp(
     ProviderScope(
-      child: RepositoryProvider.value(
-        value: authRepository,
-        child: BlocProvider(
-          create: (context) =>
-              AuthBloc(authRepository: authRepository, storage: storage)
-                ..add(AuthCheckRequested()),
+      child: MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider.value(value: authRepository),
+          RepositoryProvider.value(value: walletRepository),
+          RepositoryProvider.value(value: userRepository),
+        ],
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  AuthBloc(authRepository: authRepository, storage: storage)
+                    ..add(AuthCheckRequested()),
+            ),
+            BlocProvider(create: (context) => WalletBloc(walletRepository)),
+            BlocProvider(
+              create: (context) => SendMoneyBloc(
+                walletRepository: walletRepository,
+                userRepository: userRepository,
+              ),
+            ),
+          ],
           child: const MyApp(),
         ),
       ),
