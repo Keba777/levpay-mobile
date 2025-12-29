@@ -17,11 +17,10 @@ class AppTheme {
         seedColor: deepTeal,
         primary: deepTeal,
         secondary: mintGreen,
-        background: cream,
-        surface: Colors.white,
+        surface: cream, // Was background
         error: const Color(0xFFE57373),
       ),
-      
+
       // Text Theme
       textTheme: GoogleFonts.outfitTextTheme().copyWith(
         displayLarge: const TextStyle(
@@ -32,9 +31,7 @@ class AppTheme {
           color: deepTeal,
           fontWeight: FontWeight.w700,
         ),
-        bodyLarge: const TextStyle(
-          color: Color(0xFF2C3E50),
-        ),
+        bodyLarge: const TextStyle(color: Color(0xFF2C3E50)),
       ),
 
       // Button Theme
@@ -47,10 +44,7 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          textStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+          textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
 
@@ -65,7 +59,7 @@ class AppTheme {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: Colors.grey.withOpacity(0.1)),
+          borderSide: BorderSide(color: Colors.grey.withValues(alpha: 0.1)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),

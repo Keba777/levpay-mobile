@@ -17,17 +17,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final List<Map<String, String>> _pages = [
     {
       "title": "Seamless Payments",
-      "desc": "Transfer money instantly to anyone, anywhere in the world with zero latency.",
-      "image": "assets/logo/Icon - Deep Teal.svg", // Placeholder for illustration
+      "desc":
+          "Transfer money instantly to anyone, anywhere in the world with zero latency.",
+      "image":
+          "assets/logo/Icon - Deep Teal.svg", // Placeholder for illustration
     },
     {
       "title": "Smart Wallet",
-      "desc": "Manage multiple currencies and track your spending habits with AI insights.",
+      "desc":
+          "Manage multiple currencies and track your spending habits with AI insights.",
       "image": "assets/logo/Icon - Deep Teal.svg",
     },
     {
       "title": "Bank-Grade Security",
-      "desc": "Your assets are protected 24/7 by our advanced encryption and fraud detection systems.",
+      "desc":
+          "Your assets are protected 24/7 by our advanced encryption and fraud detection systems.",
       "image": "assets/logo/Icon - Deep Teal.svg",
     },
   ];
@@ -46,11 +50,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               height: 300,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: AppTheme.sage.withOpacity(0.3),
+                color: AppTheme.sage.withValues(alpha: 0.3),
               ),
             ),
           ),
-          
+
           SafeArea(
             child: Column(
               children: [
@@ -58,14 +62,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   flex: 3,
                   child: PageView.builder(
                     controller: _pageController,
-                    onPageChanged: (value) => setState(() => _currentPage = value),
+                    onPageChanged: (value) =>
+                        setState(() => _currentPage = value),
                     itemCount: _pages.length,
-                    itemBuilder: (context, index) => _OnboardingContent(
-                      data: _pages[index],
-                    ),
+                    itemBuilder: (context, index) =>
+                        _OnboardingContent(data: _pages[index]),
                   ),
                 ),
-                
+
                 Expanded(
                   flex: 1,
                   child: Column(
@@ -81,17 +85,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             height: 8,
                             width: _currentPage == index ? 24 : 8,
                             decoration: BoxDecoration(
-                              color: _currentPage == index 
-                                ? AppTheme.deepTeal 
-                                : AppTheme.deepTeal.withOpacity(0.2),
+                              color: _currentPage == index
+                                  ? AppTheme.deepTeal
+                                  : AppTheme.deepTeal.withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(4),
                             ),
                           ),
                         ),
                       ),
-                      
+
                       const Spacer(),
-                      
+
                       Padding(
                         padding: const EdgeInsets.all(24.0),
                         child: Row(
@@ -102,7 +106,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               child: Text(
                                 "Skip",
                                 style: TextStyle(
-                                  color: AppTheme.deepTeal.withOpacity(0.7),
+                                  color: AppTheme.deepTeal.withValues(
+                                    alpha: 0.7,
+                                  ),
                                   fontSize: 16,
                                 ),
                               ),
@@ -119,9 +125,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 }
                               },
                               style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 32,
+                                  vertical: 16,
+                                ),
                               ),
-                              child: Text(_currentPage == _pages.length - 1 ? "Get Started" : "Next"),
+                              child: Text(
+                                _currentPage == _pages.length - 1
+                                    ? "Get Started"
+                                    : "Next",
+                              ),
                             ),
                           ],
                         ),
