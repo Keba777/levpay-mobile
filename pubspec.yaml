@@ -60,6 +60,7 @@ dependencies:
   shimmer: ^3.0.0
   flutter_screenutil: ^5.9.0
   google_fonts: ^6.1.0
+  image_picker: ^1.1.2
 
   # Forms
   flutter_form_builder: ^9.1.1

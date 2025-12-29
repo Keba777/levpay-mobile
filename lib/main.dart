@@ -14,6 +14,8 @@ import 'features/wallet/data/repositories/wallet_repository.dart';
 import 'features/user/data/repositories/user_repository.dart';
 import 'features/wallet/presentation/bloc/wallet_bloc.dart';
 import 'features/wallet/presentation/bloc/send_money_bloc.dart';
+import 'features/kyc/data/repositories/kyc_repository.dart';
+import 'features/kyc/presentation/bloc/kyc_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +28,7 @@ void main() async {
   final authRepository = AuthRepository(dioClient);
   final walletRepository = WalletRepository(dioClient);
   final userRepository = UserRepository(dioClient);
+  final kycRepository = KYCRepository(dioClient);
 
   runApp(
     ProviderScope(
@@ -34,6 +37,7 @@ void main() async {
           RepositoryProvider.value(value: authRepository),
           RepositoryProvider.value(value: walletRepository),
           RepositoryProvider.value(value: userRepository),
+          RepositoryProvider.value(value: kycRepository),
         ],
         child: MultiBlocProvider(
           providers: [
@@ -48,6 +52,9 @@ void main() async {
                 walletRepository: walletRepository,
                 userRepository: userRepository,
               ),
+            ),
+            BlocProvider(
+              create: (context) => KYCBloc(kycRepository: kycRepository),
             ),
           ],
           child: const MyApp(),
