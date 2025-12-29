@@ -13,6 +13,7 @@ import 'package:levpay_mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:levpay_mobile/features/auth/presentation/bloc/auth_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'; // For context.read
 import 'package:levpay_mobile/features/kyc/presentation/screens/kyc_screen.dart';
+import 'package:levpay_mobile/features/user/presentation/screens/settings_screen.dart';
 
 part 'app_router.g.dart';
 
@@ -28,6 +29,7 @@ GoRouter goRouter(Ref ref) {
       $homeRoute,
       $sendMoneyRoute,
       $kYCRoute,
+      $settingsRoute,
     ],
     redirect: (context, state) {
       final authState = context.read<AuthBloc>().state;
@@ -109,4 +111,13 @@ class KYCRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const KYCScreen();
+}
+
+@TypedGoRoute<SettingsRoute>(path: '/settings')
+class SettingsRoute extends GoRouteData {
+  const SettingsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const SettingsScreen();
 }

@@ -28,6 +28,62 @@ class UserRepository {
     }
   }
 
+  Future<Map<String, dynamic>> updateProfile({
+    String? firstName,
+    String? lastName,
+    String? username,
+    String? phone,
+    String? avatarPath,
+  }) async {
+    try {
+      final Map<String, dynamic> data = {};
+      if (firstName != null) data['first_name'] = firstName;
+      if (lastName != null) data['last_name'] = lastName;
+      if (username != null) data['username'] = username;
+      if (phone != null) data['phone'] = phone;
+
+      if (avatarPath != null) {
+        final formData = FormData.fromMap({
+          ...data,
+          'avatar': await MultipartFile.fromFile(
+            avatarPath,
+            filename: avatarPath.split('/').last,
+          ),
+        });
+        final response = await _dioClient.dio.put('/users/me', data: formData);
+        return response.data;
+      } else {
+        final response = await _dioClient.dio.put('/users/me', data: data);
+        return response.data;
+      }
+    } on DioException catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<Map<String, dynamic>> getSettings() async {
+    try {
+      final response = await _dioClient.dio.get('/users/settings');
+      return response.data;
+    } on DioException catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<Map<String, dynamic>> updateSettings(
+    Map<String, dynamic> preferences,
+  ) async {
+    try {
+      final response = await _dioClient.dio.put(
+        '/users/settings',
+        data: preferences,
+      );
+      return response.data;
+    } on DioException catch (e) {
+      throw _handleError(e);
+    }
+  }
+
   Exception _handleError(DioException e) {
     if (e.response != null) {
       final data = e.response?.data;

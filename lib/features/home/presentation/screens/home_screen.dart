@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:levpay_mobile/core/router/app_router.dart';
 import 'package:levpay_mobile/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:levpay_mobile/features/auth/presentation/bloc/auth_event.dart';
 import 'package:levpay_mobile/features/auth/presentation/bloc/auth_state.dart';
 import 'package:levpay_mobile/features/wallet/presentation/bloc/wallet_bloc.dart';
 import 'package:levpay_mobile/features/wallet/presentation/bloc/wallet_event.dart';
@@ -77,11 +77,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: IconButton(
                           icon: const Icon(
-                            Icons.logout,
+                            LucideIcons.settings,
                             color: Color(0xFF3D8D7A),
                           ),
                           onPressed: () {
-                            context.read<AuthBloc>().add(AuthLogoutRequested());
+                            const SettingsRoute().push(context);
                           },
                         ),
                       ),

@@ -14,6 +14,7 @@ List<RouteBase> get $appRoutes => [
       $homeRoute,
       $sendMoneyRoute,
       $kYCRoute,
+      $settingsRoute,
     ];
 
 RouteBase get $loginRoute => GoRouteData.$route(
@@ -178,11 +179,33 @@ extension $KYCRouteExtension on KYCRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $settingsRoute => GoRouteData.$route(
+      path: '/settings',
+      factory: $SettingsRouteExtension._fromState,
+    );
+
+extension $SettingsRouteExtension on SettingsRoute {
+  static SettingsRoute _fromState(GoRouterState state) => const SettingsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$goRouterHash() => r'741a2a47a2d998b2c986b975ecfee1346723c049';
+String _$goRouterHash() => r'830e16aaf10d406799e5f05c962868bf5bdd3cfc';
 
 /// See also [goRouter].
 @ProviderFor(goRouter)

@@ -16,6 +16,7 @@ import 'features/wallet/presentation/bloc/wallet_bloc.dart';
 import 'features/wallet/presentation/bloc/send_money_bloc.dart';
 import 'features/kyc/data/repositories/kyc_repository.dart';
 import 'features/kyc/presentation/bloc/kyc_bloc.dart';
+import 'features/user/presentation/bloc/profile_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,6 +56,9 @@ void main() async {
             ),
             BlocProvider(
               create: (context) => KYCBloc(kycRepository: kycRepository),
+            ),
+            BlocProvider(
+              create: (context) => ProfileBloc(userRepository: userRepository),
             ),
           ],
           child: const MyApp(),
