@@ -968,9 +968,15 @@ mixin _$User {
   String get lastName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  @JsonKey(name: 'avatar_url')
+  String get avatarUrl => throw _privateConstructorUsedError;
+  String get preferences => throw _privateConstructorUsedError;
   @JsonKey(name: 'kyc_status')
   String get kycStatus => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_2fa_enabled')
+  bool get is2FAEnabled => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
 
@@ -990,8 +996,12 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'last_name') String lastName,
       String email,
       String phone,
+      String username,
+      @JsonKey(name: 'avatar_url') String avatarUrl,
+      String preferences,
       @JsonKey(name: 'kyc_status') String kycStatus,
       String role,
+      @JsonKey(name: 'is_2fa_enabled') bool is2FAEnabled,
       @JsonKey(name: 'created_at') DateTime createdAt});
 }
 
@@ -1013,8 +1023,12 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? lastName = null,
     Object? email = null,
     Object? phone = null,
+    Object? username = null,
+    Object? avatarUrl = null,
+    Object? preferences = null,
     Object? kycStatus = null,
     Object? role = null,
+    Object? is2FAEnabled = null,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
@@ -1038,6 +1052,18 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      avatarUrl: null == avatarUrl
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      preferences: null == preferences
+          ? _value.preferences
+          : preferences // ignore: cast_nullable_to_non_nullable
+              as String,
       kycStatus: null == kycStatus
           ? _value.kycStatus
           : kycStatus // ignore: cast_nullable_to_non_nullable
@@ -1046,6 +1072,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
+      is2FAEnabled: null == is2FAEnabled
+          ? _value.is2FAEnabled
+          : is2FAEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -1067,8 +1097,12 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'last_name') String lastName,
       String email,
       String phone,
+      String username,
+      @JsonKey(name: 'avatar_url') String avatarUrl,
+      String preferences,
       @JsonKey(name: 'kyc_status') String kycStatus,
       String role,
+      @JsonKey(name: 'is_2fa_enabled') bool is2FAEnabled,
       @JsonKey(name: 'created_at') DateTime createdAt});
 }
 
@@ -1087,8 +1121,12 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? lastName = null,
     Object? email = null,
     Object? phone = null,
+    Object? username = null,
+    Object? avatarUrl = null,
+    Object? preferences = null,
     Object? kycStatus = null,
     Object? role = null,
+    Object? is2FAEnabled = null,
     Object? createdAt = null,
   }) {
     return _then(_$UserImpl(
@@ -1112,6 +1150,18 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      avatarUrl: null == avatarUrl
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      preferences: null == preferences
+          ? _value.preferences
+          : preferences // ignore: cast_nullable_to_non_nullable
+              as String,
       kycStatus: null == kycStatus
           ? _value.kycStatus
           : kycStatus // ignore: cast_nullable_to_non_nullable
@@ -1120,6 +1170,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
+      is2FAEnabled: null == is2FAEnabled
+          ? _value.is2FAEnabled
+          : is2FAEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -1137,8 +1191,12 @@ class _$UserImpl implements _User {
       @JsonKey(name: 'last_name') required this.lastName,
       required this.email,
       required this.phone,
+      required this.username,
+      @JsonKey(name: 'avatar_url') required this.avatarUrl,
+      required this.preferences,
       @JsonKey(name: 'kyc_status') required this.kycStatus,
       required this.role,
+      @JsonKey(name: 'is_2fa_enabled') required this.is2FAEnabled,
       @JsonKey(name: 'created_at') required this.createdAt});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
@@ -1157,17 +1215,27 @@ class _$UserImpl implements _User {
   @override
   final String phone;
   @override
+  final String username;
+  @override
+  @JsonKey(name: 'avatar_url')
+  final String avatarUrl;
+  @override
+  final String preferences;
+  @override
   @JsonKey(name: 'kyc_status')
   final String kycStatus;
   @override
   final String role;
+  @override
+  @JsonKey(name: 'is_2fa_enabled')
+  final bool is2FAEnabled;
   @override
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
 
   @override
   String toString() {
-    return 'User(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, kycStatus: $kycStatus, role: $role, createdAt: $createdAt)';
+    return 'User(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, username: $username, avatarUrl: $avatarUrl, preferences: $preferences, kycStatus: $kycStatus, role: $role, is2FAEnabled: $is2FAEnabled, createdAt: $createdAt)';
   }
 
   @override
@@ -1182,17 +1250,37 @@ class _$UserImpl implements _User {
                 other.lastName == lastName) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.avatarUrl, avatarUrl) ||
+                other.avatarUrl == avatarUrl) &&
+            (identical(other.preferences, preferences) ||
+                other.preferences == preferences) &&
             (identical(other.kycStatus, kycStatus) ||
                 other.kycStatus == kycStatus) &&
             (identical(other.role, role) || other.role == role) &&
+            (identical(other.is2FAEnabled, is2FAEnabled) ||
+                other.is2FAEnabled == is2FAEnabled) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, firstName, lastName, email,
-      phone, kycStatus, role, createdAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      firstName,
+      lastName,
+      email,
+      phone,
+      username,
+      avatarUrl,
+      preferences,
+      kycStatus,
+      role,
+      is2FAEnabled,
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -1215,8 +1303,12 @@ abstract class _User implements User {
           @JsonKey(name: 'last_name') required final String lastName,
           required final String email,
           required final String phone,
+          required final String username,
+          @JsonKey(name: 'avatar_url') required final String avatarUrl,
+          required final String preferences,
           @JsonKey(name: 'kyc_status') required final String kycStatus,
           required final String role,
+          @JsonKey(name: 'is_2fa_enabled') required final bool is2FAEnabled,
           @JsonKey(name: 'created_at') required final DateTime createdAt}) =
       _$UserImpl;
 
@@ -1235,10 +1327,20 @@ abstract class _User implements User {
   @override
   String get phone;
   @override
+  String get username;
+  @override
+  @JsonKey(name: 'avatar_url')
+  String get avatarUrl;
+  @override
+  String get preferences;
+  @override
   @JsonKey(name: 'kyc_status')
   String get kycStatus;
   @override
   String get role;
+  @override
+  @JsonKey(name: 'is_2fa_enabled')
+  bool get is2FAEnabled;
   @override
   @JsonKey(name: 'created_at')
   DateTime get createdAt;

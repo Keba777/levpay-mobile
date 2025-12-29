@@ -88,8 +88,12 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       lastName: json['last_name'] as String,
       email: json['email'] as String,
       phone: json['phone'] as String,
+      username: json['username'] as String,
+      avatarUrl: json['avatar_url'] as String,
+      preferences: json['preferences'] as String,
       kycStatus: json['kyc_status'] as String,
       role: json['role'] as String,
+      is2FAEnabled: json['is_2fa_enabled'] as bool,
       createdAt: DateTime.parse(json['created_at'] as String),
     );
 
@@ -100,7 +104,11 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'last_name': instance.lastName,
       'email': instance.email,
       'phone': instance.phone,
+      'username': instance.username,
+      'avatar_url': instance.avatarUrl,
+      'preferences': instance.preferences,
       'kyc_status': instance.kycStatus,
       'role': instance.role,
+      'is_2fa_enabled': instance.is2FAEnabled,
       'created_at': instance.createdAt.toIso8601String(),
     };

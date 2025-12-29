@@ -72,8 +72,12 @@ class User with _$User {
     @JsonKey(name: 'last_name') required String lastName,
     required String email,
     required String phone,
+    required String username,
+    @JsonKey(name: 'avatar_url') required String avatarUrl,
+    required String preferences,
     @JsonKey(name: 'kyc_status') required String kycStatus,
     required String role,
+    @JsonKey(name: 'is_2fa_enabled') required bool is2FAEnabled,
     @JsonKey(name: 'created_at') required DateTime createdAt,
   }) = _User;
 
