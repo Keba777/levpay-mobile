@@ -18,6 +18,7 @@ List<RouteBase> get $appRoutes => [
       $cardsRoute,
       $billingRoute,
       $notificationCenterRoute,
+      $adminDashboardRoute,
     ];
 
 RouteBase get $loginRoute => GoRouteData.$route(
@@ -271,11 +272,34 @@ extension $NotificationCenterRouteExtension on NotificationCenterRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $adminDashboardRoute => GoRouteData.$route(
+      path: '/admin',
+      factory: $AdminDashboardRouteExtension._fromState,
+    );
+
+extension $AdminDashboardRouteExtension on AdminDashboardRoute {
+  static AdminDashboardRoute _fromState(GoRouterState state) =>
+      const AdminDashboardRoute();
+
+  String get location => GoRouteData.$location(
+        '/admin',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$goRouterHash() => r'8ad8878c89d2c1a923debdb0f830c7f35b36e5c7';
+String _$goRouterHash() => r'ff937ffdadbdaab4e026f9751bca2158fe837eb5';
 
 /// See also [goRouter].
 @ProviderFor(goRouter)

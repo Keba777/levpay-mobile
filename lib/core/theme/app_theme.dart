@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+class AppColors {
+  static const Color deepTeal = Color(0xFF3D8D7A);
+  static const Color mintGreen = Color(0xFFB3D8A8);
+  static const Color cream = Color(0xFFFBFFE4);
+  static const Color sage = Color(0xFFA3D1C6);
+  static const Color background = cream;
+}
+
 class AppTheme {
   // Brand Colors
-  static const Color deepTeal = Color(0xFF3D8D7A); // Primary
-  static const Color mintGreen = Color(0xFFB3D8A8); // Secondary / Success
-  static const Color cream = Color(0xFFFBFFE4); // Background
-  static const Color sage = Color(0xFFA3D1C6); // Accent
+  static const Color deepTeal = AppColors.deepTeal;
+  static const Color mintGreen = AppColors.mintGreen;
+  static const Color cream = AppColors.cream;
+  static const Color sage = AppColors.sage;
 
   static ThemeData get lightTheme {
     return ThemeData(

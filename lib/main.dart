@@ -24,6 +24,8 @@ import 'features/billing/data/repositories/billing_repository.dart';
 import 'features/billing/presentation/bloc/billing_bloc.dart';
 import 'features/notification/data/repositories/notification_repository.dart';
 import 'features/notification/presentation/bloc/notification_bloc.dart';
+import 'features/admin/data/repositories/admin_repository.dart';
+import 'features/admin/presentation/bloc/admin_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,6 +42,7 @@ void main() async {
   final paymentMethodRepository = PaymentMethodRepository(dioClient: dioClient);
   final billingRepository = BillingRepository(dioClient);
   final notificationRepository = NotificationRepository(dioClient);
+  final adminRepository = AdminRepository(dioClient, storage);
 
   runApp(
     ProviderScope(
@@ -52,6 +55,7 @@ void main() async {
           RepositoryProvider.value(value: paymentMethodRepository),
           RepositoryProvider.value(value: billingRepository),
           RepositoryProvider.value(value: notificationRepository),
+          RepositoryProvider.value(value: adminRepository),
         ],
         child: MultiBlocProvider(
           providers: [
@@ -86,6 +90,7 @@ void main() async {
                   NotificationBloc(repository: notificationRepository)
                     ..add(NotificationListRequested()),
             ),
+            BlocProvider(create: (context) => AdminBloc(adminRepository)),
           ],
           child: const MyApp(),
         ),

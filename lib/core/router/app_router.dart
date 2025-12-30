@@ -17,6 +17,7 @@ import 'package:levpay_mobile/features/user/presentation/screens/settings_screen
 import 'package:levpay_mobile/features/user/presentation/screens/cards_screen.dart';
 import 'package:levpay_mobile/features/billing/presentation/screens/billing_screen.dart';
 import 'package:levpay_mobile/features/notification/presentation/screens/notification_center_screen.dart';
+import 'package:levpay_mobile/features/admin/presentation/screens/admin_dashboard_screen.dart';
 
 part 'app_router.g.dart';
 
@@ -35,7 +36,9 @@ GoRouter goRouter(Ref ref) {
       $settingsRoute,
       $cardsRoute,
       $billingRoute,
+      $billingRoute,
       $notificationCenterRoute,
+      $adminDashboardRoute,
     ],
     redirect: (context, state) {
       final authState = context.read<AuthBloc>().state;
@@ -153,4 +156,13 @@ class NotificationCenterRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const NotificationCenterScreen();
+}
+
+@TypedGoRoute<AdminDashboardRoute>(path: '/admin')
+class AdminDashboardRoute extends GoRouteData {
+  const AdminDashboardRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AdminDashboardScreen();
 }
